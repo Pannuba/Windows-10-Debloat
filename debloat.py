@@ -102,7 +102,8 @@ while choiceMade == False:
 			print('Insert "y" or "n"')
 			choice = input()
 		if choice == 'y':
-			run('powershell -command "Get-AppxPackage -AllUsers *alarms* | Remove-AppxPackage Get-AppxPackage -AllUsers *people* | Remove-AppxPackage"')
+			run('powershell -command "Get-AppxPackage -AllUsers *alarms* | Remove-AppxPackage"')
+			run('powershell -command "Get-AppxPackage -AllUsers *people* | Remove-AppxPackage"')
 
 		print('Remove Mail, Calendar...? y/n')
 		choice = input()
