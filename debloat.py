@@ -197,14 +197,14 @@ while choiceMade == False:
 		if choice == 'y':
 			run('powershell -command "Disable-ComputerRestore -Drive "C:\""')
 			run('powershell -command "vssadmin delete shadows /all /Quiet"')
-			run('"reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows NT\SystemRestore" /v "DisableConfig" /t "REG_DWORD" /d "1" /f"')
-			run('"reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows NT\SystemRestore" /v "DisableSR " /t "REG_DWORD" /d "1" /f"')
-			run('"reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SystemRestore" /v "DisableConfig" /t "REG_DWORD" /d "1" /f"')
-			run('"reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SystemRestore" /v "DisableSR " /t "REG_DWORD" /d "1" /f"')
+			run('powershell -command "reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows NT\SystemRestore" /v "DisableConfig" /t "REG_DWORD" /d "1" /f"')
+			run('powershell -command "reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows NT\SystemRestore" /v "DisableSR " /t "REG_DWORD" /d "1" /f"')
+			run('powershell -command "reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SystemRestore" /v "DisableConfig" /t "REG_DWORD" /d "1" /f"')
+			run('powershell -command "reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SystemRestore" /v "DisableSR " /t "REG_DWORD" /d "1" /f"')
 			
-		print('Reboot Windows, rerun the script and enter \'2\'')
+		print('Reboot Windows, rerun the script and enter \'1\'')
 
-	elif checkpoint == '2':
+	elif checkpoint == '1':
 
 		choiceMade = True
 		print('Turn off Windows error reporting? y/n')
@@ -271,14 +271,17 @@ while choiceMade == False:
 			if choice == '32':
 				run('"%SYSTEMROOT%\System32\OneDriveSetup.exe" /uninstall')
 			elif choice == '64':
-				run('"%SYSTEMROOT%\SysWOW64\OneDriveSetup.exe" /uninstall')
-			run('rd "%USERPROFILE%\OneDrive" /Q /S')
-			run('rd "C:\OneDriveTemp" /Q /S')
-			run('rd "%LOCALAPPDATA%\Microsoft\OneDrive" /Q /S')
-			run('rd "%PROGRAMDATA%\Microsoft OneDrive" /Q /S')
+				try:
+					run('"%SYSTEMROOT%\SysWOW64\OneDriveSetup.exe" /uninstall', shell=True)
+				except:
+					print('idubs')
+			run('rd "%USERPROFILE%\OneDrive" /Q /S', shell=True)
+			run('rd "C:\OneDriveTemp" /Q /S', shell=True)
+			run('rd "%LOCALAPPDATA%\Microsoft\OneDrive" /Q /S', shell=True)
+			run('rd "%PROGRAMDATA%\Microsoft OneDrive" /Q /S', shell=True)
 			run('reg delete "HKEY_CLASSES_ROOT\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}" /f')
 			run('reg delete "HKEY_CLASSES_ROOT\Wow6432Node\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}" /f')
-			run('del /Q /F "%localappdata%\Microsoft\OneDrive\OneDriveStandaloneUpdater.exe"')
+			run('del /Q /F "%localappdata%\Microsoft\OneDrive\OneDriveStandaloneUpdater.exe"', shell=True)
 
 		print('Remove telemetry and other unnecessary services? y/n')
 		choice = input()
@@ -299,14 +302,14 @@ while choiceMade == False:
 			run('sc delete RetailDemo')
 			run('sc delete diagsvc')
 			run('sc delete shpamsvc')
-			run('for /f "tokens=1" %I in (\'reg query "HKLM\SYSTEM\CurrentControlSet\Services" /k /f "wscsvc" ^| find /i "wscsvc"\') do (reg delete %I /f)')
-			run('for /f "tokens=1" %I in (\'reg query "HKLM\SYSTEM\CurrentControlSet\Services" /k /f "OneSyncSvc" ^| find /i "OneSyncSvc"\') do (reg delete %I /f)')
-			run('for /f "tokens=1" %I in (\'reg query "HKLM\SYSTEM\CurrentControlSet\Services" /k /f "MessagingService" ^| find /i "MessagingService"\') do (reg delete %I /f)')
-			run('for /f "tokens=1" %I in (\'reg query "HKLM\SYSTEM\CurrentControlSet\Services" /k /f "PimIndexMaintenanceSvc" ^| find /i "PimIndexMaintenanceSvc"\') do (reg delete %I /f)')
-			run('for /f "tokens=1" %I in (\'reg query "HKLM\SYSTEM\CurrentControlSet\Services" /k /f "UserDataSvc" ^| find /i "UserDataSvc"\') do (reg delete %I /f)')
-			run('for /f "tokens=1" %I in (\'reg query "HKLM\SYSTEM\CurrentControlSet\Services" /k /f "UnistoreSvc" ^| find /i "UnistoreSvc"\') do (reg delete %I /f)')
-			run('for /f "tokens=1" %I in (\'reg query "HKLM\SYSTEM\CurrentControlSet\Services" /k /f "BcastDVRUserService" ^| find /i "BcastDVRUserService"\') do (reg delete %I /f)')
-			run('for /f "tokens=1" %I in (\'reg query "HKLM\SYSTEM\CurrentControlSet\Services" /k /f "Sgrmbroker" ^| find /i "Sgrmbroker"\') do (reg delete %I /f)')
+			run('for /f "tokens=1" %I in (\'reg query "HKLM\SYSTEM\CurrentControlSet\Services" /k /f "wscsvc" ^| find /i "wscsvc"\') do (reg delete %I /f)', shell=True)
+			run('for /f "tokens=1" %I in (\'reg query "HKLM\SYSTEM\CurrentControlSet\Services" /k /f "OneSyncSvc" ^| find /i "OneSyncSvc"\') do (reg delete %I /f)', shell=True)
+			run('for /f "tokens=1" %I in (\'reg query "HKLM\SYSTEM\CurrentControlSet\Services" /k /f "MessagingService" ^| find /i "MessagingService"\') do (reg delete %I /f)', shell=True)
+			run('for /f "tokens=1" %I in (\'reg query "HKLM\SYSTEM\CurrentControlSet\Services" /k /f "PimIndexMaintenanceSvc" ^| find /i "PimIndexMaintenanceSvc"\') do (reg delete %I /f)', shell=True)
+			run('for /f "tokens=1" %I in (\'reg query "HKLM\SYSTEM\CurrentControlSet\Services" /k /f "UserDataSvc" ^| find /i "UserDataSvc"\') do (reg delete %I /f)', shell=True)
+			run('for /f "tokens=1" %I in (\'reg query "HKLM\SYSTEM\CurrentControlSet\Services" /k /f "UnistoreSvc" ^| find /i "UnistoreSvc"\') do (reg delete %I /f)', shell=True)
+			run('for /f "tokens=1" %I in (\'reg query "HKLM\SYSTEM\CurrentControlSet\Services" /k /f "BcastDVRUserService" ^| find /i "BcastDVRUserService"\') do (reg delete %I /f)', shell=True)
+			run('for /f "tokens=1" %I in (\'reg query "HKLM\SYSTEM\CurrentControlSet\Services" /k /f "Sgrmbroker" ^| find /i "Sgrmbroker"\') do (reg delete %I /f)', shell=True)
 			run('sc delete diagnosticshub.standardcollector.service')
 			run('reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Siuf\Rules" /v "NumberOfSIUFInPeriod" /t REG_DWORD /d 0 /f')
 			run('reg delete "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Siuf\Rules" /v "PeriodInNanoSeconds" /f')
@@ -361,7 +364,7 @@ while choiceMade == False:
 			run('schtasks /Change /TN "\Microsoft\Windows\Shell\FamilySafetyRefreshTask" /disable')
 			run('schtasks /Change /TN "\Microsoft\Windows\Subscription\EnableLicenseAcquisition" /disable')
 			run('schtasks /Change /TN "\Microsoft\Windows\Subscription\LicenseAcquisition" /disable')
-			run('del /F /Q "C:\Windows\System32\Tasks\Microsoft\Windows\SettingSync\*"')
+			run('del /F /Q "C:\Windows\System32\Tasks\Microsoft\Windows\SettingSync\*"', shell=True)
 
 	else:
 		print('Checkpoint not valid')
