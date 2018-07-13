@@ -155,8 +155,11 @@ int main(){
 			}
 			
 			if (choice == "y")
+			
+			{
 				system("powershell -command \"Get-AppxPackage -AllUsers *alarms* | Remove-AppxPackage\"");
 				system("powershell -command \"Get-AppxPackage -AllUsers *people* | Remove-AppxPackage\"");
+			}
 			
 			cout << "Remove Mail, Calendar? y/n ";
 			getline (cin, choice);
@@ -169,8 +172,11 @@ int main(){
 			}
 			
 			if (choice == "y")
+			
+			{
 				system("powershell -command \"Get-AppxPackage -AllUsers *comm* | Remove-AppxPackage\"");
 				system("powershell -command \"Get-AppxPackage -AllUsers *mess* | Remove-AppxPackage\"");
+			}
 			
 			cout << "Remove OneNote? y/n ";
 			getline (cin, choice);
@@ -183,8 +189,11 @@ int main(){
 			}
 			
 			if (choice == "y")
+			
+			{
 				system("powershell -command \"Get-AppxPackage -AllUsers *onenote* | Remove-AppxPackage\"");
 				system("powershell -command \"Get-AppxPackage -AllUsers *onenote* | Remove-AppxPackage\"");
+			}
 			
 			cout << "Remove Photos? y/n ";
 			getline (cin, choice);
@@ -313,13 +322,15 @@ int main(){
 			{
 				system("powershell -command \"Disable-ComputerRestore -Drive \"C:\\\"\"");
 				system("powershell -command \"vssadmin delete shadows /all /Quiet\"");
-				system("powershell -command \"reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows NT\\SystemRestore\" /v \"DisableConfig\" /t \"REG_DWORD\" /d \"1\" /f\"");
-				system("powershell -command \"reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows NT\\SystemRestore\" /v \"DisableSR \" /t \"REG_DWORD\" /d \"1\" /f\"");
-				system("powershell -command \"reg add \"HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\SystemRestore\" /v \"DisableConfig\" /t \"REG_DWORD\" /d \"1\" /f\"");
-				system("powershell -command \"reg add \"HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\SystemRestore\" /v \"DisableSR \" /t \"REG_DWORD\" /d \"1\" /f\"");
+				system("reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows NT\\SystemRestore\" /v \"DisableConfig\" /t \"REG_DWORD\" /d \"1\" /f");
+				system("reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows NT\\SystemRestore\" /v \"DisableSR \" /t \"REG_DWORD\" /d \"1\" /f");
+				system("reg add \"HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\SystemRestore\" /v \"DisableConfig\" /t \"REG_DWORD\" /d \"1\" /f");
+				system("reg add \"HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\SystemRestore\" /v \"DisableSR \" /t \"REG_DWORD\" /d \"1\" /f");
 			}
 			
 			cout << "Reboot Windows, rerun the script and enter \'1\'\n";
+			cin.sync();
+			cin.get();
 		}
 
 		else if (checkpoint == "1")
