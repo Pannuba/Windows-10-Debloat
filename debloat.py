@@ -1,7 +1,7 @@
 from subprocess import run
-import os
+#import os
 
-dir_path = os.path.dirname(os.path.realpath(__file__))
+#dir_path = os.path.dirname(os.path.realpath(__file__))
 
 print('Make sure your PC has downloaded every update from Windows Update and Microsoft Store before running this script')
 print('Checkpoint code? If the script is running for the first time enter \'0\'')
@@ -34,7 +34,7 @@ while choiceMade == False:
 			run('reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SecurityHealth" /f')
 			run('reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\Run" /v "SecurityHealth" /f')
 			run('reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\SecHealthUI.exe" /v Debugger /t REG_SZ /d "%windir%\System32\taskkill.exe" /f')
-			run('install_wim_tweak /o /c Windows-Defender /r') #AAAAAAAAAAAAAAAAAA
+			run('install_wim_tweak /o /c Windows-Defender /r')
 
 		print('Remove Windows Store? y/n')
 		choice = input()
@@ -195,13 +195,12 @@ while choiceMade == False:
 			print('Insert "y" or "n"')
 			choice = input()
 		if choice == 'y':
-			#TUTTO IN POWERSHELL
-			run('Disable-ComputerRestore -Drive "C:\"')
-			run('vssadmin delete shadows /all /Quiet')
-			run('reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows NT\SystemRestore" /v "DisableConfig" /t "REG_DWORD" /d "1" /f')
-			run('reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows NT\SystemRestore" /v "DisableSR " /t "REG_DWORD" /d "1" /f')
-			run('reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SystemRestore" /v "DisableConfig" /t "REG_DWORD" /d "1" /f')
-			run('reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SystemRestore" /v "DisableSR " /t "REG_DWORD" /d "1" /f')
+			run('powershell -command "Disable-ComputerRestore -Drive "C:\""')
+			run('powershell -command "vssadmin delete shadows /all /Quiet"')
+			run('powershell -command "reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows NT\SystemRestore" /v "DisableConfig" /t "REG_DWORD" /d "1" /f"')
+			run('powershell -command "reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows NT\SystemRestore" /v "DisableSR " /t "REG_DWORD" /d "1" /f"')
+			run('powershell -command "reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SystemRestore" /v "DisableConfig" /t "REG_DWORD" /d "1" /f"')
+			run('powershell -command "reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SystemRestore" /v "DisableSR " /t "REG_DWORD" /d "1" /f"')
 			
 		print('Reboot Windows, rerun the script and enter \'2\'')
 
