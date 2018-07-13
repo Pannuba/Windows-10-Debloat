@@ -111,7 +111,8 @@ while choiceMade == False:
 			print('Insert "y" or "n"')
 			choice = input()
 		if choice == 'y':
-			run('powershell -command "Get-AppxPackage -AllUsers *comm* | Remove-AppxPackage Get-AppxPackage -AllUsers *mess* | Remove-AppxPackage"')
+			run('powershell -command "Get-AppxPackage -AllUsers *comm* | Remove-AppxPackage"')
+			run('powershell -command "Get-AppxPackage -AllUsers *mess* | Remove-AppxPackage"')
 
 		print('Remove OneNote? y/n')
 		choice = input()
