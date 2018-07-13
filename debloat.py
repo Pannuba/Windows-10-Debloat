@@ -42,7 +42,7 @@ while choiceMade == False:
 			print('Insert "y" or "n"')
 			choice = input()
 		if choice == 'y':
-			#POWERSHELL Get-AppxPackage -AllUsers *store* | Remove-AppxPackage
+			run('powershell -command "Get-AppxPackage -AllUsers *store* | Remove-AppxPackage"')
 			run('install_wim_tweak /o /c Microsoft-Windows-ContentDeliveryManager /r')
 			run('install_wim_tweak /o /c Microsoft-Windows-Store /r')
 			run('reg add "HKLM\Software\Policies\Microsoft\WindowsStore" /v RemoveWindowsStore /t REG_DWORD /d 1 /f')
@@ -58,7 +58,7 @@ while choiceMade == False:
 			print('Insert "y" or "n"')
 			choice = input()
 		if choice == 'y':
-			print('POWERSHELL Get-AppxPackage -AllUsers *zune* | Remove-AppxPackage')
+			run('powershell -command "Get-AppxPackage -AllUsers *zune* | Remove-AppxPackage"')
 
 		print('Xbox and Game DVR? y/n')
 		choice = input()
@@ -66,7 +66,7 @@ while choiceMade == False:
 			print('Insert "y" or "n"')
 			choice = input()
 		if choice == 'y':
-			#POWERSHELLGet-AppxPackage -AllUsers *xbox* | Remove-AppxPackage
+			run('powershell -command "Get-AppxPackage -AllUsers *xbox* | Remove-AppxPackage"')
 			run('sc delete XblAuthManager')
 			run('sc delete XblGameSave')
 			run('sc delete XboxNetApiSvc')
@@ -83,7 +83,7 @@ while choiceMade == False:
 			print('Insert "y" or "n"')
 			choice = input()
 		if choice == 'y':
-			print('POWERSHELL Get-AppxPackage -AllUsers *sticky* | Remove-AppxPackage')
+			run('powershell -command "Get-AppxPackage -AllUsers *sticky* | Remove-AppxPackage"')
 
 		print('Remove Maps? y/n')
 		choice = input()
@@ -91,7 +91,7 @@ while choiceMade == False:
 			print('Insert "y" or "n"')
 			choice = input()
 		if choice == 'y':
-			#POWERSHELL Get-AppxPackage -AllUsers *maps* | Remove-AppxPackage
+			run('powershell -command "Get-AppxPackage -AllUsers *maps* | Remove-AppxPackage"')
 			run('sc delete MapsBroker')
 			run('sc delete lfsvc')
 			run('schtasks /Change /TN "\Microsoft\Windows\Maps\MapsUpdateTask" /disable')
@@ -103,7 +103,7 @@ while choiceMade == False:
 			print('Insert "y" or "n"')
 			choice = input()
 		if choice == 'y':
-			print('POWERTSHELL Get-AppxPackage -AllUsers *alarms* | Remove-AppxPackage Get-AppxPackage -AllUsers *people* | Remove-AppxPackage')
+			run('powershell -command "Get-AppxPackage -AllUsers *alarms* | Remove-AppxPackage Get-AppxPackage -AllUsers *people* | Remove-AppxPackage"')
 
 		print('Remove Mail, Calendar...? y/n')
 		choice = input()
@@ -111,7 +111,7 @@ while choiceMade == False:
 			print('Insert "y" or "n"')
 			choice = input()
 		if choice == 'y':
-			print('POWERSHELL Get-AppxPackage -AllUsers *comm* | Remove-AppxPackage Get-AppxPackage -AllUsers *mess* | Remove-AppxPackage')
+			run('powershell -command "Get-AppxPackage -AllUsers *comm* | Remove-AppxPackage Get-AppxPackage -AllUsers *mess* | Remove-AppxPackage"')
 
 		print('Remove OneNote? y/n')
 		choice = input()
@@ -119,7 +119,7 @@ while choiceMade == False:
 			print('Insert "y" or "n"')
 			choice = input()
 		if choice == 'y':
-			print('PS Get-AppxPackage -AllUsers *onenote* | Remove-AppxPackage')
+			run('powershell -command "Get-AppxPackage -AllUsers *onenote* | Remove-AppxPackage"')
 
 		print('Remove Photos? y/n')
 		choice = input()
@@ -127,7 +127,7 @@ while choiceMade == False:
 			print('Insert "y" or "n"')
 			choice = input()
 		if choice == 'y':
-			print('Get-AppxPackage -AllUsers *photo* | Remove-AppxPackage')
+			run('powershell -command "Get-AppxPackage -AllUsers *photo* | Remove-AppxPackage"')
 
 		print('Remove Camera? y/n')
 		choice = input()
@@ -135,7 +135,7 @@ while choiceMade == False:
 			print('Insert "y" or "n"')
 			choice = input()
 		if choice == 'y':
-			print('PS Get-AppxPackage -AllUsers *camera* | Remove-AppxPackage')
+			run('powershell -command "Get-AppxPackage -AllUsers *camera* | Remove-AppxPackage"')
 
 		print('Remove Weather, News...? y/n')
 		choice = input()
@@ -143,7 +143,7 @@ while choiceMade == False:
 			print('Insert "y" or "n"')
 			choice = input()
 		if choice == 'y':
-			print('Get-AppxPackage -AllUsers *bing* | Remove-AppxPackage')
+			run('powershell -command "Get-AppxPackage -AllUsers *bing* | Remove-AppxPackage"')
 
 		print('Remove Calculator? y/n')
 		choice = input()
@@ -151,7 +151,7 @@ while choiceMade == False:
 			print('Insert "y" or "n"')
 			choice = input()
 		if choice == 'y':
-			print('Get-AppxPackage -AllUsers *calc* | Remove-AppxPackage')
+			run('powershell -command "Get-AppxPackage -AllUsers *calc* | Remove-AppxPackage"')
 
 		print('Remove Sound Recorder? y/n')
 		choice = input()
@@ -159,7 +159,7 @@ while choiceMade == False:
 			print('Insert "y" or "n"')
 			choice = input()
 		if choice == 'y':
-			print('Get-AppxPackage -AllUsers *soundrec* | Remove-AppxPackage')
+			run('powershell -command "Get-AppxPackage -AllUsers *soundrec* | Remove-AppxPackage"')
 
 		# Secondo l'ordine qui ci sarebbe paint/vr
 		print('Remove Microsoft Edge? y/n')
@@ -178,7 +178,7 @@ while choiceMade == False:
 			choice = input()
 		if choice == 'y':
 			run('install_wim_tweak /o /c Microsoft-Windows-ContactSupport /r')
-			run('Get-AppxPackage *GetHelp* | Remove-AppxPackage')
+			run('powershell -command "Get-AppxPackage *GetHelp* | Remove-AppxPackage"')
 			
 
 		print('Remove Connect? y/n')
