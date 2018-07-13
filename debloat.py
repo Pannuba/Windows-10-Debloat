@@ -60,7 +60,7 @@ while choiceMade == False:
 		if choice == 'y':
 			run('powershell -command "Get-AppxPackage -AllUsers *zune* | Remove-AppxPackage"')
 
-		print('Xbox and Game DVR? y/n')
+		print('Remove Xbox and Game DVR? y/n')
 		choice = input()
 		while choice != 'n' and choice != 'y':
 			print('Insert "y" or "n"')
@@ -95,7 +95,6 @@ while choiceMade == False:
 			run('sc delete MapsBroker')
 			run('sc delete lfsvc')
 			run('schtasks /Change /TN "\Microsoft\Windows\Maps\MapsUpdateTask" /disable')
-			
 
 		print('Remove Alarms and Clock? y/n')
 		choice = input()
@@ -271,10 +270,7 @@ while choiceMade == False:
 			if choice == '32':
 				run('"%SYSTEMROOT%\System32\OneDriveSetup.exe" /uninstall')
 			elif choice == '64':
-				try:
-					run('"%SYSTEMROOT%\SysWOW64\OneDriveSetup.exe" /uninstall', shell=True)
-				except:
-					print('idubs')
+				run('"%SYSTEMROOT%\SysWOW64\OneDriveSetup.exe" /uninstall', shell=True)
 			run('rd "%USERPROFILE%\OneDrive" /Q /S', shell=True)
 			run('rd "C:\OneDriveTemp" /Q /S', shell=True)
 			run('rd "%LOCALAPPDATA%\Microsoft\OneDrive" /Q /S', shell=True)
